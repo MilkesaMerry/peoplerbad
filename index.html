@@ -149,16 +149,18 @@ Parse.initialize(
 );
     // Create a new User
      function createParseUser() {
-      // Creates a new Parse "User" object, which is created by default in your Parse app
-     const myNewObject = new Parse.Object('Players');
-  myNewObject.set('username', document.getElementById('username');
-  myNewObject.set('password', document.getElementById('password'));
+    (async () => {
+  const myNewObject = new Parse.Object('Players');
+  myNewObject.set('username', 'A string');
+  myNewObject.set('password', 'A string');
   try {
     const result = await myNewObject.save();
     // Access the Parse Object attributes using the .GET method
-    } catch (error) {
-    }
-    }
-  </script>
+    console.log('Players created', result);
+  } catch (error) {
+    console.error('Error while creating Players: ', error);
+  }
+})();
+        </script>
 </html>
 </html>
