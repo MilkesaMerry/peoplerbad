@@ -151,8 +151,8 @@ Parse.initialize(
      function createParseUser() {
     (async () => {
   const myNewObject = new Parse.Object('Players');
-  myNewObject.set('username', 'A string');
-  myNewObject.set('password', 'A string');
+  myNewObject.set('username', document.getElementById("username").value);
+  myNewObject.set('password', document.getElementById("password").value);
   try {
     const result = await myNewObject.save();
     // Access the Parse Object attributes using the .GET method
