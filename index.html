@@ -150,7 +150,7 @@ Parse.initialize(
     // Create a new User
      function createParseUser() {
     (async () => {
-  const myNewObject = new Parse.Object('Players');
+  const myNewObject = new Parse.Object('myUsers');
   myNewObject.set('username', document.getElementById("username").value);
   myNewObject.set('password', document.getElementById("password").value);
   try {
